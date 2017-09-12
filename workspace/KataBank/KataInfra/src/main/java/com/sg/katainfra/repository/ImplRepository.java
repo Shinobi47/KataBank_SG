@@ -16,20 +16,16 @@ import org.springframework.stereotype.Component;
 
 import com.sg.kataapi.dto.ClientBean;
 import com.sg.kataapi.dto.OperationBean;
-import com.sg.kataapi.irepository.IRepository;
+import com.sg.kataapi.interfaces.IRepository;
 import com.sg.katainfra.hibernate.model.Client;
 import com.sg.katainfra.hibernate.model.Operation;
 
 @Component
 public class ImplRepository implements IRepository {
 
-	// SessionFactory factory = new Configuration()
-	// .configure("hibernate.cfg.xml")
-	// .addAnnotatedClass(Produit.class)
-	// .buildSessionFactory();
-	//
-	// Session session = factory.getCurrentSession();
-
+	/**
+	 * @return list of operations
+	 */
 	public ArrayList<OperationBean> getOperations() {
 
 		try {
@@ -77,6 +73,11 @@ public class ImplRepository implements IRepository {
 		}
 	}
 
+	/**
+	 * @param name the name of the client
+	 * @param password the 4 digits password
+	 * @return Client bean
+	 */
 	public ClientBean getClient(String name, String password) {
 
 		try {
@@ -116,6 +117,11 @@ public class ImplRepository implements IRepository {
 			factory.close();
 		}
 	}
+	
+	
+	/**
+	 * @param amount the amount to deposit
+	 */
 	public void persistDeposit(int amount) {
 
 		try {
@@ -142,23 +148,97 @@ public class ImplRepository implements IRepository {
 
 			Query query = session.createSQLQuery("Insert into ope(op_name,ope_date,amount,balance,fk_idCLI) values(:op_name,:ope_date,:amount,:balance,:fk_idCLI)");
 			query.setParameter("op_name","D");
-			query.setParameter("ope_date", "10/08/2017");
+			query.setParameter("ope_date", date);
 			query.setParameter("amount", amount);
 			query.setParameter("balance",currentBalance+amount);
+			query.setParameter("fk_idCLI",1);
+			query.executeUpdate();
+			t1.commit();
+
+		} finally {
+			factory.close();
+		}
+		
+	}
+	
+	
+	/**
+	 * @param amount the amount to withdraw
+	 */
+	public void persistWithdraw(int amount) {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Operation.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		try {
+
+			Transaction t1 = session.beginTransaction();
+			DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			String date = formatter.format(Calendar.getInstance().getTime());
+
+			Query subQuery = session.createQuery("select balance from Operation order by id_op desc");
+			subQuery.setMaxResults(1);
+			int currentBalance = (Integer) subQuery.getSingleResult();
+
+			Query query = session.createSQLQuery("Insert into ope(op_name,ope_date,amount,balance,fk_idCLI) values(:op_name,:ope_date,:amount,:balance,:fk_idCLI)");
+			query.setParameter("op_name","W");
+			query.setParameter("ope_date", date);
+			query.setParameter("amount", amount);
+			query.setParameter("balance",currentBalance-amount);
 			query.setParameter("fk_idCLI",1);
 			query.executeUpdate();
 			t1.commit();
 					
 //			Operation op = new Operation();
 //			op.setAmount(amount);
-//			//op.setBalance(balance);
 //			op.setOperationDate(date);
-//			op.setOperationName("D");
+//			op.setOperationName("W");
+//			op.setBalance(currentBalance-amount);
 //			Client c = new Client();
 //			c.setIdClient(2);
 //			op.setClient(c);
 //			session.persist(op);
 //			t1.commit();
+
+		} finally {
+			factory.close();
+		}
+		
+	}
+	
+	
+	/**
+	 * @return the current balance
+	 */
+	public int getBalance() {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Operation.class)
+				.buildSessionFactory();
+
+		Session session = factory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+			Query subQuery = session.createQuery("select balance from Operation order by id_op desc");
+			subQuery.setMaxResults(1);
+			return (Integer) subQuery.getSingleResult();
 
 		} finally {
 			factory.close();

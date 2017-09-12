@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import com.sg.kataapi.dto.ClientBean;
 import com.sg.kataapi.dto.OperationBean;
-import com.sg.kataapi.irepository.IRepository;
+import com.sg.kataapi.interfaces.IRepository;
 import com.sg.katainfra.repository.ImplRepository;
 
 public class Testing {
 
 
-	@Test
-	public void test1(){
+//	@Test
+	public void testGetOperations(){
 		
 		IRepository ir = new ImplRepository();
 		
@@ -29,8 +29,8 @@ public class Testing {
 		}
 	}
 	
-	@Test
-	public void test2(){
+//	@Test
+	public void testGetClient(){
 		
 		IRepository ir = new ImplRepository();
 		
@@ -40,9 +40,21 @@ public class Testing {
 		
 	}
 	
-	@Test
-	public void test3(){
+//	@Test
+	public void testDeposit(){
 		IRepository ir = new ImplRepository();
 		ir.persistDeposit(350);
+	}
+	
+	@Test
+	public void testWithdraw(){
+		IRepository ir = new ImplRepository();
+		ir.persistWithdraw(350);
+	}
+	
+	@Test
+	public void testGetBalance(){
+		IRepository ir = new ImplRepository();
+		System.out.println(ir.getBalance());
 	}
 }

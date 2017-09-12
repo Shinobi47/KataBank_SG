@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sg.kataapi.dto.ClientBean;
 import com.sg.kataapi.dto.OperationBean;
-import com.sg.kataapi.idomain.IDomain;
-import com.sg.kataapi.irepository.IRepository;
+import com.sg.kataapi.interfaces.IDomain;
+import com.sg.kataapi.interfaces.IRepository;
 
 public class App {
 	
@@ -36,6 +36,9 @@ public class App {
 		return domain.businessDeposit(Integer.parseInt(amount));
 	}
 	
+	public String withdrawMoney(String amount){
+		return domain.businessWithdraw(Integer.parseInt(amount));
+	}
 	
 
 }
