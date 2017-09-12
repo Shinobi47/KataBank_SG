@@ -14,7 +14,7 @@
 <!-- 	<context:annotation-config /> -->
 	 <mvc:annotation-driven/>
 	
-
+<!-- 	<mvc:view-controller path="/" view-name="hello"/> -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value ="/jsp/" />
 		<property name="suffix" value =".jsp" />

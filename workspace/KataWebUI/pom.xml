@@ -56,11 +56,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-server -->
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>1.19</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.sun.jersey</groupId> -->
+<!-- 			<artifactId>jersey-server</artifactId> -->
+<!-- 			<version>1.19</version> -->
+<!-- 		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
 		<dependency>

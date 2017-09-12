@@ -19,11 +19,13 @@
 		margin: 0;
 		padding: 0;
 		color: #404040;
+		text-align: center
 	}
 	
 	p, ol, ul
 	{
 		margin-top: 0;
+		text-align: center
 	}
 	
 	ol, ul

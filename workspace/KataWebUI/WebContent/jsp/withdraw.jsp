@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Hello</title>
+        <title>Withdraw</title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
@@ -26,27 +26,19 @@
         </div>
         <div id="page-wrapper">
                 <div id="page" class="container">
-				    <f:form modelAttribute="authDto" method="POST" action="/KataWebUI/post_auth" class="pure-form">
+				    <f:form modelAttribute="operationDto" method="POST" action="/KataWebUI/withdraw" class="pure-form">
 				        <fieldset>
-				            <legend>Authentification</legend>
+				            <legend>Withdraw</legend>
 				            <br/><br/><br/><br/><br/><br/>
-				            
-				            <f:label path = "name">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Votre nom : <span class="requis">*</span></f:label>
-				            <f:input path = "name" size="20" maxlength="60"/>
-							<p>
-							<br/><br/>
-							<f:label path = "password">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Votre code secret : <span class="requis">*</span></f:label>
-				            <f:input path = "password" size="20" maxlength="60"/>
-				            </p>
+				            <f:label path = "amount">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Please enter the amount : <span class="requis">*</span></f:label>
+				            <f:input path = "amount" size="20" maxlength="60"/>
 				            <br/><br/>
-				
-				            <input type="submit" value="Authentification" class="button" style="margin-left:100px;"/>
+				            <input type="submit" value="Proceed" class="button" style="margin-left:100px;"/>
 				                           
 				            </fieldset>
 				    </f:form>
 				</div>
         </div>
-
 		<div id="copyright" class="container">
                 <p>&copy; HB. All rights reserved ©. | Powered by <a href="http://google.com">Société générale</a></p>
                         <ul class="contact">

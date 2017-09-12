@@ -1,4 +1,4 @@
-package com.sg.katabank.katawebui.controller;
+package com.sg.katabank.katawebui.dto;
 
 public class OperationDto {
 	
