@@ -146,13 +146,15 @@ public class ImplRepository implements IRepository {
 			subQuery.setMaxResults(1);
 			int currentBalance = (Integer) subQuery.getSingleResult();
 
-			Query query = session.createSQLQuery("Insert into ope(op_name,ope_date,amount,balance,fk_idCLI) values(:op_name,:ope_date,:amount,:balance,:fk_idCLI)");
-			query.setParameter("op_name","D");
-			query.setParameter("ope_date", date);
-			query.setParameter("amount", amount);
-			query.setParameter("balance",currentBalance+amount);
-			query.setParameter("fk_idCLI",1);
-			query.executeUpdate();
+			Operation op = new Operation();
+			op.setAmount(amount);
+			op.setOperationDate(date);
+			op.setOperationName("D");
+			op.setBalance(currentBalance+amount);
+			Client c = new Client();
+			c.setIdClient(1);
+			op.setClient(c);
+			session.persist(op);
 			t1.commit();
 
 		} finally {
@@ -189,26 +191,17 @@ public class ImplRepository implements IRepository {
 			subQuery.setMaxResults(1);
 			int currentBalance = (Integer) subQuery.getSingleResult();
 
-			Query query = session.createSQLQuery("Insert into ope(op_name,ope_date,amount,balance,fk_idCLI) values(:op_name,:ope_date,:amount,:balance,:fk_idCLI)");
-			query.setParameter("op_name","W");
-			query.setParameter("ope_date", date);
-			query.setParameter("amount", amount);
-			query.setParameter("balance",currentBalance-amount);
-			query.setParameter("fk_idCLI",1);
-			query.executeUpdate();
+			Operation op = new Operation();
+			op.setAmount(amount);
+			op.setOperationDate(date);
+			op.setOperationName("W");
+			op.setBalance(currentBalance-amount);
+			Client c = new Client();
+			c.setIdClient(1);
+			op.setClient(c);
+			session.persist(op);
 			t1.commit();
-					
-//			Operation op = new Operation();
-//			op.setAmount(amount);
-//			op.setOperationDate(date);
-//			op.setOperationName("W");
-//			op.setBalance(currentBalance-amount);
-//			Client c = new Client();
-//			c.setIdClient(2);
-//			op.setClient(c);
-//			session.persist(op);
-//			t1.commit();
-
+			
 		} finally {
 			factory.close();
 		}
