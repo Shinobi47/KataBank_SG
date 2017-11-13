@@ -13,7 +13,7 @@ public class ImplDomain implements IDomain {
 	private IRepository repo;
 
 	public String businessDeposit(int amount) {
-		if(amount>1200){
+		if(amount>1300){
 			return "Amount exceeds deposit limit ! operation failed !";
 		}
 		else{
