@@ -29,3 +29,11 @@
 hs_err_pid*
 
 # End of https://www.gitignore.io/api/java
+/KataAPI/.settings/*.prefs
+/KataAPI/.settings/*.xml
+/KataApp/.settings/*.prefs
+/KataApp/.settings/*.xml
+/KataDomain/.settings/*.prefs
+/KataDomain/.settings/*.xml
+/KataInfra/.settings/*.prefs
+/KataInfra/.settings/*.xml
