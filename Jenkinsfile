@@ -2,21 +2,21 @@ pipeline {
     agent any 
     stages {
         stage('Clean') { 
-            steps 
+            steps { 
                 withMaven(maven : 'maven_3.5.4'){
                   sh 'mvn clean'
                 }
             }
         }
         stage('Compile') { 
-            steps 
+            steps {
                 withMaven(maven : 'maven_3.5.4'){
                   sh 'mvn compile'
                 }
             }
         }
         stage('Install') { 
-            steps 
+            steps {
                 withMaven(maven : 'maven_3.5.4'){
                   sh 'mvn install'
                 }
