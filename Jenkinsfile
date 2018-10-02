@@ -2,14 +2,11 @@ pipeline {
     agent any 
     stages {
         stage('Clean') {
-            try{
-				withMaven(maven : 'maven_3.5.4'){
-					sh 'mvn clean'
-				}
-			} catch (err) {
-				error('CLEAN STAGE FAILS')
-				throw err
-			}
+            steps {
+                withMaven(maven : 'maven_3.5.4'){
+                  sh 'mvn clean'
+                }
+            }
         }
         stage('Compile') { 
             steps {
