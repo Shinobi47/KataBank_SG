@@ -3,10 +3,8 @@ pipeline {
     stages {
         stage('Clean') {
             try{
-				steps {
-					withMaven(maven : 'maven_3.5.4'){
+				withMaven(maven : 'maven_3.5.4'){
 					sh 'mvn clean'
-					}
 				}
 			} catch (err) {
 				error('CLEAN STAGE FAILS')
