@@ -4,7 +4,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <artifactId>KataBank</artifactId>
-  <modules>
+  <modules> 
   	<module>KataWebUI</module>
   	<module>KataApp</module>
   	<module>KataDomain</module>
