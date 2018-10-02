@@ -4,21 +4,21 @@ pipeline {
         stage('Clean') {
             steps {
                 withMaven(maven : 'maven_3.5.4'){
-                  sh 'mvn clean'
+                  bat 'mvn clean'
                 }
             }
         }
         stage('Compile') { 
             steps {
                 withMaven(maven : 'maven_3.5.4'){
-                  sh 'mvn compile'
+                  bat 'mvn compile'
                 }
             }
         }
         stage('Install') { 
             steps {
                 withMaven(maven : 'maven_3.5.4'){
-                  sh 'mvn install'
+                  bat 'mvn install'
                 }
             }
         }
